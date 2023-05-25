@@ -1,0 +1,19 @@
+#TituloPrincipal{
+    color: blue;
+    font-size: 30px;
+    font-family: Comic Sans MS; 
+}
+
+.parrafosEjemplo{
+    color: green;
+    font-weight: bold;
+}
+
+.parrafoSecundario{
+    color: violet;
+}
+
+p{
+    color: brown;
+}
+
