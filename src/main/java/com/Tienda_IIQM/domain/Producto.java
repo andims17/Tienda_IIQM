@@ -5,8 +5,8 @@
 package com.Tienda_IIQM.domain;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import java.io.Serializable;
-import java.util.List;
 import lombok.Data;
 
 /**
@@ -15,32 +15,32 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name="categoria")
-public class Categoria implements Serializable{
-    
+@Table(name="producto")
+public class Producto implements Serializable {
     // Verswion de serializacion
     private static final long serialVersionUID = 1L;
     
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_categoria")
-    private Long idCategoria; // Se transforma en id_Categoria
+    @Column(name="id_producto")
+    private Long idProducto;
     private String descripcion;
+    private String detalle;
+    private double precio;
+    private int existencias;
     private String rutaImagen;
     private boolean activo;
     
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="id_categoria")
-    private List<Producto> productos;
+    private Categoria categoria;
 
-    public Categoria() {
+    public Producto() {
     }
 
-    public Categoria(String descripcion, String rutaImagen, boolean activo) {
-        this.descripcion = descripcion;
-        this.rutaImagen = rutaImagen;
-        this.activo = activo;
-    }
+    
+    
     
     
     
