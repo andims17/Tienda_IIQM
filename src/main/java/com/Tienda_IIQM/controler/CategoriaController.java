@@ -7,6 +7,7 @@ package com.Tienda_IIQM.controler;
 import com.Tienda_IIQM.domain.Categoria;
 import com.Tienda_IIQM.service.CategoriaService;
 import com.Tienda_IIQM.service.impl.FirebaseStorageServiceImpl;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,11 @@ public class CategoriaController {
     
     
     @GetMapping("/listado")
-    public String inicio(Model model) {
+    public String inicio(Model model, HttpSession session) {
         log.info("Consumindo el recurso /categoria/listado");
         List<Categoria> categorias = categoriaService.getCategorias(false);
+        String imagen = (String)session.getAttribute("usuarioImagen");
+        model.addAttribute("avatar",imagen);
         model.addAttribute("categorias", categorias);
         model.addAttribute("totalCategorias", categorias.size());
         return "/categoria/listado";
